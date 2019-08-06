@@ -12,14 +12,14 @@ namespace "lab-13" created
 
 ## Task 1: Labeling a node
 
-The basic node labeling will give you the option to restrict pods to specific 
-nodes. This could be very usefull if you are running multiple environments. 
-Imagine that we are pushing our application from `test` to `uat` to `prod`. With 
-node labeling you can specify for example that all the pods of the `test` 
+The basic node labeling will give you the option to restrict pods to specific
+nodes. This could be very usefull if you are running multiple environments.
+Imagine that we are pushing our application from `test` to `uat` to `prod`. With
+node labeling you can specify for example that all the pods of the `test`
 environment are going to be scheduled on the `test` node.
 
-Because we are using `minikube` in this lab, we only have 1 node. This example 
-will show you how you can label the `minikube` node and make sure that the 
+Because we are using `minikube` in this lab, we only have 1 node. This example
+will show you how you can label the `minikube` node and make sure that the
 `application` is running on this `minikube` node.
 
 First we need to find the name of the node.
@@ -39,7 +39,7 @@ kubectl label nodes minikube environment=test
 node/minikube labeled
 ```
 
-This labels the `minikube` node with the `environment=test` label. You can 
+This labels the `minikube` node with the `environment=test` label. You can
 confirm that the node is labeled with the command.
 
 ```
@@ -49,7 +49,7 @@ NAME       STATUS    ROLES     AGE       VERSION   LABELS
 minikube   Ready     master    2d        v1.13.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,environment=test,kubernetes.io/hostname=minikube,node-role.kubernetes.io/master=
 ```
 
-Create a new deployment file `lab-13-label-deployment.yml` and add this content 
+Create a new deployment file `lab-13-label-deployment.yml` and add this content
 to it.
 
 ```
@@ -79,7 +79,7 @@ spec:
         environment: test
 ```
 
-This is basically our standard container-info deployment. We only added the 
+This is basically our standard container-info deployment. We only added the
 following:
 
 ```
@@ -106,8 +106,8 @@ container-info-blue-689dd4c865-9bnc8   1/1     Running   0          47s   172.17
 container-info-blue-689dd4c865-r5djk   1/1     Running   0          47s   172.17.0.7   minikube   <none>           <none>
 ```
 
-As we only have a single node it is obvious that our pods are running on our 
-node, but if we would have had more nodes you could see that our pod was running 
+As we only have a single node it is obvious that our pods are running on our
+node, but if we would have had more nodes you could see that our pod was running
 on the node we specifically selected.
 
 ### Task 2: Pod Affinity
@@ -171,7 +171,7 @@ spec:
 ```
 
 The pod will `not` schedule next to the already running `test` environment pod
-on any node. This means that the scheduler is going to look for another pod
+on any node. This means that the scheduler is going to look for another node
 where no pod is running with the label `environment=test`.
 
 ## Task 4: Cleanup

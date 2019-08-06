@@ -52,7 +52,7 @@ deployment.apps/container-info created
 ```
 
 Use `kubectl port-forward` to see the deployed application in your local
-browser (NOTE: as we are forwarding a deployment we are using `deployment/*` 
+browser (NOTE: as we are forwarding a deployment we are using `deployment/*`
 instead of `pod/*` like we used in a previous lab):
 
 ```
@@ -82,8 +82,8 @@ kubectl scale deployment container-info --replicas=3 -n lab-06
 deployment.extensions "container-info" scaled
 ```
 
-When you do a `kubectl get pods -n lab-06` quicily enough you will see that 
-there are 2 additional container-info pods being started (if you are not fast 
+When you do a `kubectl get pods -n lab-06` quickly enough you will see that 
+there are 2 additional container-info pods being started (if you are not fast
 enough you will see them in the `Running` state already).
 
 ```
@@ -113,7 +113,7 @@ container-info-6d9747978f-ndl6n   0/1     Terminating   0          85s
 container-info-6d9747978f-vmfdd   0/1     Terminating   0          85s
 ```
 
-> NOTE: similarly, scaling up can also be done by editing the "replica" field in 
+> NOTE: similarly, scaling up can also be done by editing the "replica" field in
 > the YAML
 
 ## Task 3: Exposing the deployment via a service
@@ -122,7 +122,7 @@ When our deployment consists of multiple pods we can't use the port-forward to
 reach all pods. In this scenario we will have to create a service and expose
 this service.
 
-In the next lab we will dig deeper in creating a service. For now just follow 
+In the next lab we will dig deeper in creating a service. For now just follow
 these commands.
 
 ```
@@ -130,7 +130,7 @@ kubectl expose deployment container-info --type=NodePort --name=container-info -
 ```
 
 Our service is exposed now. Let's go find the port where it is running on. We
-will be able to open te service in your default browser with the following 
+will be able to open te service in your default browser with the following
 command.
 
 ```

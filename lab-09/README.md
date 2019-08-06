@@ -60,7 +60,7 @@ exit
 ## Task 2: Create a persistent volume
 
 In this task we are going to create the persistent volume. This will put the
-volume in a `Available` state. It's not yet bound to a persistent volume claim
+volume in an `Available` state. It's not yet bound to a persistent volume claim
 at this point.  Keep in mind that a persistent volume is not namespaced!
 
 Create a file `lab-09-pv.yml` with the following content.
@@ -262,9 +262,9 @@ kubectl delete ns lab-09
 namespace "lab-09" deleted
 ```
 
-> NOTE: we have now deleted our namespace, but as our persistent volume is not 
-> namespaced it still exists.  So even if you deleted your application your data 
-> will still be available.  If you are sure you no longer need your data follow 
+> NOTE: we have now deleted our namespace, but as our persistent volume is not
+> namespaced it still exists.  So even if you deleted your application your data
+> will still be available.  If you are sure you no longer need your data follow
 > the steps below to clean up your persistent volume (and its data)
 
 To delete the persistent volume object (this will not delete any data!):

@@ -12,11 +12,11 @@ namespace "lab-10" created
 
 ## Task 1: Creating objects using a list
 
-You can put different Kubernetes opbjects in a list, and apply the list instead 
-of applying the objects seperatly. This will deploy all the resources you have 
+You can put different Kubernetes objects in a list, and apply the list instead
+of applying the objects separately. This will deploy all the resources you have
 listed in this list.
 
-Create the file `lab-10-list.yml` with the following content, the items in the 
+Create the file `lab-10-list.yml` with the following content, the items in the
 list should look familiar as we have created them before individually.
 
 ```
