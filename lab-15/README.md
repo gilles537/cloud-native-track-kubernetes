@@ -38,7 +38,7 @@ kubectl create ns lab-15
 namespace/lab-15 created
 ```
 
-### Task 1: Creating a pod with resource limits
+### Task 1: Describing a pod with resource limits
 Create a file named `lab-15-limited-pod.yml` with the following content.
 
 ```
@@ -77,6 +77,8 @@ To prevent these scenarios, you can set up ResourceQuotas and LimitRanges at the
 
 After creating Namespaces, you can lock them down using ResourceQuotas. ResourceQuotas are very powerful, but let’s just look at how you can use them to restrict CPU and Memory resource usage.
 
+### Task 3: Describing a ResourceQuota
+
 Create the following file named `lab-15-resource-quota.yml`.
 
 ```
@@ -92,7 +94,7 @@ spec:
     limits.memory: "500Mi"
 ```
 
-### Task 3: Apply this file to the cluster
+### Task 4: Apply this file to the cluster
 
 ```
 kubectl apply -f lab-15-resource-quota.yml -n lab-15
@@ -119,7 +121,7 @@ spec:
 
 ```
 
-### Task 4: Apply this pod to the namespace:
+### Task 5: Apply this pod to the namespace:
 
 ```
 kubectl apply -f lab-15-limited-pod.yml -n lab-15`
@@ -127,7 +129,7 @@ kubectl apply -f lab-15-limited-pod.yml -n lab-15`
 Error from server (Forbidden): error when creating "lab15-limited-pod.yml": pods "container-info" is forbidden: exceeded quota: demo, requested: limits.memory=1000Mi,requests.memory=600Mi, used: limits.memory=0,requests.memory=0, limited: limits.memory=500Mi,requests.memory=100Mi
 ```
 
-### Task 5: Remove ResourceQuota from namespace
+### Task 6: Remove ResourceQuota from namespace
 
 ```
 kubectl delete resourcequota demo -n lab-15
@@ -135,9 +137,11 @@ kubectl delete resourcequota demo -n lab-15
 resourcequota "demo" deleted
 ```
 
-###LimitRange
+### LimitRange
 
 You can also create a LimitRange in your Namespace. Unlike a Quota, which looks at the Namespace as a whole, a LimitRange applies to an individual container. This can help prevent people from creating super tiny or super large containers inside the Namespace.
+
+### Task 7: Describing a LimitRange
 
 Create a file named `lab-15-limitrange.yml` with the following content:
 
@@ -164,7 +168,7 @@ spec:
 
 ```
 
-### Task 6: Apply this limitRange to our namespace:
+### Task 8: Apply this limitRange to our namespace:
 
 ```
 kubectl apply -f lab-15-limitrange.yml -n lab-15
@@ -182,7 +186,7 @@ The ***default section*** sets up the ***default limits*** for a container in a 
 
 The ***defaultRequest section*** sets up the ***default requests*** for a container in a pod. If you set these values in the limitRange, any containers that don’t explicitly set these themselves will get assigned the default values.
 
-### Task 7: Try and create a pod that exceeds these limits we will get an error.
+### Task 9: Try and create a pod that exceeds these limits we will get an error.
 
 ```
 kubectl apply -f lab-15-limited-pod.yml -n lab-15
@@ -191,7 +195,7 @@ Error from server (Forbidden): error when creating "lab15-limited-pod.yml": pods
 
 ```
 
-### Task 8: Clean up
+### Task 10: Clean up
 
 ```
 kubectl delete namespace lab-15
